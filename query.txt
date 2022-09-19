@@ -1,0 +1,5 @@
+$user = App\Models\User::find(11)
+$admin = App\Models\Role::create(['name'=>'Admin', 'slug'=>'admin'])
+$user->roles()->attach($admin)
+$permission = App\Models\Permission::create(['name'=>'View Dashboard','slug'=>'view-dashboard'])
+$admin->permissions()->attach($permission)
