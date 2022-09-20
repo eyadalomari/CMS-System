@@ -40,6 +40,8 @@ Route::middleware('auth')->group(function(){
     Route::get('admin/users/{user}/profile', [UserController::class, 'show'])->name('user.profile.show');
     Route::put('admin/users/{user}/update', [UserController::class, 'update'])->name('user.profile.update');
 
+    Route::get('admin/users', [UserController::class, 'index'])->name('users.index');
+
 });
 
 Route::get('/admin/posts/{post}/edit', [PostController::class, 'edit'])->middleware('can:view,post')->name('post.edit');
