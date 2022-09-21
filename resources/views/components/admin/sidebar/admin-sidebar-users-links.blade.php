@@ -6,7 +6,7 @@
     <div id="collapseUsers" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Users</h6>
-            <a class="collapse-item" href="">Hello</a>
+            <a class="collapse-item" href="">Users</a>
             <a class="collapse-item" href="{{route('users.index')}}">View all users</a>
         </div>
     </div>
