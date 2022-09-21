@@ -41,7 +41,7 @@
                             @foreach ($users as $user)
                                 <tr>
                                     <td>{{$user->id}}</td>
-                                    <td>{{$user->username}}</td>
+                                    <td><a href="{{route('user.profile.show', $user)}}">{{$user->username}}</a></td>
                                     <td>
                                         <img src="{{$user->avatar}}" alt="" srcset="" height="150px">
                                     </td>

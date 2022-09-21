@@ -12,6 +12,8 @@ Route::delete('/users/{user}/destroy', [UserController::class , 'destroy'])->mid
 Route::middleware(['role:admin', 'auth'])->group(function(){
 
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::put('/users/{user}/attach', [UserController::class, 'attach'])->name('user.role.attach');
+    Route::put('/users/{user}/detach', [UserController::class, 'detach'])->name('user.role.detach');
 
 });
 
