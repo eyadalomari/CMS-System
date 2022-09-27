@@ -57,10 +57,14 @@
         
         <!-- Nav Item - Pages Collapse Menu -->
         
+
         @if(auth()->user()->userHasRole('Admin'))
+        @endif
+
+        @can('delete', auth()->user())
             <x-admin.sidebar.admin-sidebar-users-links></x-admin.sidebar.admin-sidebar-users-links>
             <x-admin.sidebar.authorization-links></x-admin.sidebar.authorization-links>
-        @endif
+        @endcan
 
         <x-admin.sidebar.admin-sidebar-posts-links></x-admin.sidebar.admin-sidebar-posts-links>
 

@@ -36,6 +36,8 @@ class UserController extends Controller
             
         ]);
 
+        
+
         if(request('avatar')){
             $inputs['avatar'] = request('avatar')->store('images');
         }
@@ -46,6 +48,8 @@ class UserController extends Controller
 
 
     public function destroy(User $user){
+        $this->authorize('delete', $user);
+        
         $user->delete();
         request()->session()->flash('user-deleted-message', "User was deleted");
         return back();
@@ -61,5 +65,12 @@ class UserController extends Controller
     public function detach(User $user){
         $user->roles()->detach(request()->role);
         return back();
+    }
+
+
+
+    //API Functions
+    public function getAllUsers(){
+        return User::all();
     }
 }

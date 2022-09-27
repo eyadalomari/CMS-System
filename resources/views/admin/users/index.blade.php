@@ -9,66 +9,102 @@
         @endif
         
         <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Users</h6>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="users-table" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Username</th>
-                                <th>Avatar</th>
-                                <th>Name</th>
-                                <th>Registered on</th>
-                                <th>Updated profile date</th>
-                                <th>Delete</th>
-                            </tr>
-                        </thead>
-                        <tfoot>
-                            <tr>
-                                <th>ID</th>
-                                <th>Username</th>
-                                <th>Avatar</th>
-                                <th>Name</th>
-                                <th>Registered on</th>
-                                <th>Updated profile date</th>
-                                <th>Delete</th>
-                            </tr>
-                        </tfoot>
-                        <tbody>
-                            @foreach ($users as $user)
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Users</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="users-table" width="100%" cellspacing="0">
+                            <thead>
                                 <tr>
-                                    <td>{{$user->id}}</td>
-                                    <td><a href="{{route('user.profile.show', $user)}}">{{$user->username}}</a></td>
-                                    <td>
-                                        <img src="{{$user->avatar}}" alt="" srcset="" height="150px">
-                                    </td>
-                                    <td>{{$user->name}}</td>
-                                    <td>{{$user->created_at->diffForHumans()}}</td>
-                                    <td>{{$user->updated_at->diffForHumans()}}</td>
-                                    <td>
-                                        <form action="{{route('user.destroy', $user)}}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Delete</button>
-                                        </form>
-                                    </td>
+                                    <th>ID</th>
+                                    <th>Username</th>
+                                    <th>Avatar</th>
+                                    <th>Name</th>
+                                    <th>Registered on</th>
+                                    <th>Updated profile date</th>
+                                    <th>Delete</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Username</th>
+                                    <th>Avatar</th>
+                                    <th>Name</th>
+                                    <th>Registered on</th>
+                                    <th>Updated profile date</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </tfoot>
+                            <tbody id="table_body">
+                                   
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
+
         </div>
 
-        <div class="d-flex">
-            <div class="mx-auto">{{$users->links('pagination::bootstrap-4')}}</div>
-        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 
-        
+        <script>
+
+            $(document).ready(function() {
+                const now = Date.now();
+                var response = $.ajax({ type: "GET",  
+                    url: "{{route('get-all-users')}}",  
+                    async: false,
+                    success: function (data){
+                        for(item of data){
+                            const id=item.id;
+                            console.log(id);
+                            $('#table_body').append(
+                                    '<tr>' +
+                                        '<td>' + item.id + '</td>' +
+                                        //'<td>' + '<a href="admin/users/'+item.id+'/profile">' + item.username + '</a></td>' +
+
+                                        
+
+                                        '<td>' + 
+                                        //'<a href="@{/viewteam/{id}(id={team.id})}">'
+                                        //'<a href=@"{{route("user.profile.show",{team.id})}}">' + item.username + '</a></td>' +
+
+                                        
+                                        
+
+
+                                        '<td>' + '<img src="' + item.avatar + '" alt="" srcset="" height="150px">' + '</td>' +
+                                        '<td>' + item.name + '</td>' +
+
+                                        '<td>' +
+                                            (new Date(item.created_at)).toLocaleString() +
+                                        '</td>' +
+
+                                        '<td>' +
+                                            (new Date(item.updated_at)).toLocaleString() +  
+                                        '</td>' +
+
+                                        '<td>' +
+
+                                            '<form action="admin/users/'+item.id+'/destroy" method="post">'+
+                                                '@csrf'+
+                                                '@method("DELETE")'+
+                                                '<button type="submit" class="btn btn-danger">Delete</button>'+
+                                            '</form>'+
+
+                                        '</td>'+
+                                    
+                                    '</tr>'
+                            )
+                        }                        
+                    }
+                });
+            });
+        </script>
+       
     @endsection
 
     @section('scripts')
@@ -80,6 +116,7 @@
         <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
 
 
+        
     @endsection
 
 </x-admin-master>

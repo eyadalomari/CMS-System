@@ -77,7 +77,15 @@ class UserPolicy
      */
     public function delete(User $user, User $model)
     {
-        //
+        if($user->userHasRole('admin')){
+            return true;
+        }
+
+        if($user->userHasRole('moderator')){
+            return true;
+        }
+        
+        return $user->id == $model->id;
     }
 
     /**
