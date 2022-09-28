@@ -6,6 +6,7 @@
         </h1>
 
         @foreach($posts as $post)
+
             <div class="card mb-4">
                 <img class="card-img-top" src="{{$post->post_image}}" alt="Card image cap">
                 <div class="card-body">
@@ -22,14 +23,7 @@
 
 
         <!-- Pagination -->
-        <ul class="pagination justify-content-center mb-4">
-            <li class="page-item">
-                <a class="page-link" href="#">&larr; Older</a>
-            </li>
-            <li class="page-item disabled">
-                <a class="page-link" href="#">Newer &rarr;</a>
-            </li>
-        </ul>
+        {{$posts->links('pagination::bootstrap-4')}}
     @endsection
 
 </x-home-master>
