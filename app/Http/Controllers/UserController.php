@@ -54,7 +54,8 @@ class UserController extends Controller
         
         $user->delete();
         request()->session()->flash('user-deleted-message', "User was deleted");
-        return back();
+
+        return redirect()->route('users.index');
     }
 
 

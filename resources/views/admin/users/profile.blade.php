@@ -150,9 +150,23 @@
 
                                         </td>
                                     </tr>
+
                                 @endforeach
+
+
                             </tbody>
                         </table>
+                        @if(auth()->user()->id == $user->id)
+                            <div class="form-group">
+                                <form action="{{route('user.destroy', $user->id)}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        @endif
+
+
                     </div>
                 </div>
             </div>
