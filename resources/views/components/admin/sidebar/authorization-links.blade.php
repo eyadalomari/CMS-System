@@ -1,6 +1,6 @@
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAuthorization" aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fa fa-users" aria-hidden="true"></i>
+        <i class="fa fa-lock" aria-hidden="true"></i>
         <span>Authorization</span>
     </a>
     <div id="collapseAuthorization" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -11,3 +11,10 @@
         </div>
     </div>
 </li>
+
+
+
+
+
+
+
