@@ -29,11 +29,9 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-        if($user->userHasRole('admin')){
-            return true;
-        }
+        
 
-        if($user->userHasRole('moderator')){
+        if($user->userHasRole('admin')){
             return true;
         }
 
@@ -77,11 +75,12 @@ class UserPolicy
      */
     public function delete(User $user, User $model)
     {
+
         if($user->userHasRole('admin')){
             return true;
         }
 
-        if($user->userHasRole('moderator')){
+        if($user->userHasRole('manager')){
             return true;
         }
         
@@ -111,4 +110,5 @@ class UserPolicy
     {
         //
     }
+
 }

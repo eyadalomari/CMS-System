@@ -51,6 +51,7 @@
 
 
         <script>
+//"<form action='@{{route('user.destroy',"+item.id+")}}' method='post'>"+
 
             $(document).ready(function() {
                 const now = Date.now();
@@ -64,17 +65,7 @@
                             $('#table_body').append(
                                     '<tr>' +
                                         '<td>' + item.id + '</td>' +
-                                        //'<td>' + '<a href="admin/users/'+item.id+'/profile">' + item.username + '</a></td>' +
-
-                                        
-
-                                        '<td>' + 
-                                        //'<a href="@{/viewteam/{id}(id={team.id})}">'
-                                        //'<a href=@"{{route("user.profile.show",{team.id})}}">' + item.username + '</a></td>' +
-
-                                        
-                                        
-
+                                        '<td>' + '<a href="users/'+item.id+'/profile">' + item.username + '</a></td>' +
 
                                         '<td>' + '<img src="' + item.avatar + '" alt="" srcset="" height="150px">' + '</td>' +
                                         '<td>' + item.name + '</td>' +
@@ -89,7 +80,7 @@
 
                                         '<td>' +
 
-                                            '<form action="admin/users/'+item.id+'/destroy" method="post">'+
+                                            "<form action=users/"+item.id+"/destroy method='post'>"+
                                                 '@csrf'+
                                                 '@method("DELETE")'+
                                                 '<button type="submit" class="btn btn-danger">Delete</button>'+
