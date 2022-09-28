@@ -29,7 +29,6 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-        
 
         if($user->userHasRole('admin')){
             return true;
@@ -109,6 +108,15 @@ class UserPolicy
     public function forceDelete(User $user, User $model)
     {
         //
+    }
+
+    public function manage(User $user, User $model)
+    {
+        if($user->userHasRole('admin') or $user->userHasRole('manager')){
+            return true;
+        }
+        
+        return false;
     }
 
 }

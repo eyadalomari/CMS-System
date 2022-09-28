@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-
+use App\Models\User;
 
 
 Route::put('/users/{user}/update', [UserController::class, 'update'])->name('user.profile.update');
@@ -23,15 +23,17 @@ Route::middleware(['auth', 'can:view,user'])->group(function(){
 
 });
 
-Route::middleware(['can:view,user'])->group(function(){
 
-    
-    
-
-});
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
-Route::delete('/users/{user}/destroy', [UserController::class , 'destroy'])->name('user.destroy');
+
+
+
+Route::middleware(['auth', 'can:delete,user'])->group(function(){
+
+    Route::delete('/users/{user}/destroy', [UserController::class , 'destroy'])->name('user.destroy');
+
+});
 
 
 ?>

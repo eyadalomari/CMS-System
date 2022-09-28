@@ -11,7 +11,7 @@ class UserController extends Controller
 {
 
     public function index(){
-        $this->authorize('view', auth()->user());
+        $this->authorize('manage', auth()->user());
 
         $users = User::paginate(20);;
         return view('admin.users.index', ['users'=>$users]);

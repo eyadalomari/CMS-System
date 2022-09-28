@@ -100,7 +100,7 @@
                             <tbody>
                                 @foreach ($roles as $role)
                                     <tr>
-                                        <td><input type="checkbox" name="" id="" 
+                                        <td><input type="checkbox" name={{$role->name}} id={{$role->name}} onchange=""
 
                                         @foreach ($user->roles as $user_role)
                                             @if($user_role->slug == $role->slug)
