@@ -16,3 +16,10 @@ App\Models\Role::create(['name'=>'Subscriber', 'slug'=>'subscriber'])
 
 UPDATE users SET avatar = CONCAT ('https://via.placeholder.com/300x300.png/001122?text=', username);
 UPDATE posts SET post_image = REPLACE(post_image,'http://localhost/storage/','');
+
+
+Route Parameters=>53;
+Path Prefixes =>60;
+Fallback Routes =>60;
+Subdomain Routing=>61
+

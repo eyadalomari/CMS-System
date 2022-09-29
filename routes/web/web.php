@@ -30,5 +30,8 @@ Route::middleware('auth')->group(function(){
 
 });
 
+Route::fallback(function(){
+ return view('page-not-found');
+});
 
 
